@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <header style="border:2px solid black; background:black; padding-bottom:100px;">
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("Shauli's blog", "Index", "My")</p>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Content", "Index", "My")</li>
+                            <li>@Html.ActionLink("Fans","Index","Fans")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li id ="RSSIMG" style="margin-right:0px;padding-right:0px;"><img src="~/Content/images/RSS.png"/></li>
+                            <li style="padding-left:0px;margin-left:0px">@Html.ActionLink("Register with RSS", "Register", "Account")</li>
+                            
+          
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left" style="width:100%; border:0px solid black;">
+                    <section style="float:left;width:30%;border:0px solid black;">
+                    <p style="font-size:20px;font-style:italic;">@Html.ActionLink("About","About","Home")<br/><p>asdffdsa</p><p> asdfdsf </p><p> asdfs</p></section>
+                    <section style="float:left;width:30%;">
+                    <p style="font-size:20px;font-style:italic;padding-right:50px">Blogroll</p><p>asdffdsa</p><p> asdfdsf </p><p> asdfs</p></section>
+                    <section style="float:left;width:30%;"><p style="font-size:20px;font-style:italic;">Popular</p><p>asdffdsa</p><p> asdfdsf </p><p> asdfs</p></section>
+                </div>
+            </div>
+        </footer>
+        <!--<p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>-->
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

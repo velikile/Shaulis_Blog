@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Shauli_blog.Models.Comment>
+
+@{
+    ViewBag.Title = "SearchComment";
+}
+
+<h2>SearchComment</h2>
+@if (Model.ToArray().Length != 0) {
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pubTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.website)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pubTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.website)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+       
+    </tr>
+}
+    
+</table>
+}
+else{
+<text><h3>no Comments found</h3></text>
+}
+
+
+ 

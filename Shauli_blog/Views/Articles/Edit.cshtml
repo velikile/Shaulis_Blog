@@ -1,0 +1,56 @@
+﻿@model Shauli_blog.Models.Article
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Article</legend>
+
+        @Html.HiddenFor(model => model.id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.title)
+            @Html.ValidationMessageFor(model => model.title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.author)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.author)
+            @Html.ValidationMessageFor(model => model.author)
+        </div>
+
+         <input type="hidden" name="pubTime" value="@Model.pubtime" />
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.content)
+        </div>
+        <div class="editor-field">
+            <textarea name="content">@Model.content</textarea>
+            @Html.ValidationMessageFor(model => model.content)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

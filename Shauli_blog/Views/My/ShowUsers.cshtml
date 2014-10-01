@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Shauli_blog.Models.UserProfile>
+
+@{
+    ViewBag.Title = "ShowUsers";
+}
+
+<h2>ShowUsers</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th style="padding:20px;"> </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Points)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <th style="padding:20px;"> </th>
+        <td>
+            @Html.DisplayFor(modelItem => item.Points)
+        </td>
+        <th style="padding:20px;"> </th>
+        <td>
+            
+            @Html.ActionLink("Details", "UserDetails", new { id=item.UserId }) |
+            @Html.ActionLink("Delete", "DeleteUser", new { id=item.UserId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,48 @@
+﻿@model Shauli_blog.Models.Fan
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 style="padding-bottom:20px;"> Fan Details</h2>
+
+<fieldset>
+    
+    <legend>Fan</legend>
+    <div id="FanDetails">
+
+        <div class="Name_Data">
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.name)
+    </div>
+            </div>
+        <div class="Name_Data">
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+        </div>
+        <div class="Name_Data">
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BirthDate)
+    </div>
+    <div class="display-field" >
+        @Model.BirthDate.ToShortDateString()
+    </div>
+        </div>
+        </div>
+    <div style="margin:10px;">
+        
+        <img src="~/@ViewBag.ImagePath" width="40%" alt="Image Not Avialable" />
+    </div>
+        
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

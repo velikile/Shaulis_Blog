@@ -1,0 +1,102 @@
+﻿@model Shauli_blog.Models.Article
+
+@{
+    ViewBag.Title = "Details";
+}
+<header>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script>
+
+        $("document").ready(function () {
+            
+            $("#Center").mouseover(function () { $(this).css('color', 'red'); });
+            $("#Center").mouseout(function () { $(this).css('color', 'blue'); });
+            $("#Center").mousedown(function () { $(this).css('color', '#999999'); });
+            $("#Center").mouseup(function () { $(this).hide(); });
+            $('#Atitle').click(function () {
+                
+                $("#Center").show();
+            });
+
+
+
+        });
+
+
+    </script>
+    <link rel="stylesheet" href="~/Content/11.css" type="text/css" media="screen" />
+</header>
+<fieldset>
+    <legend>Article</legend>
+    
+    <div Id="Atitle" style="font:20px tahoma; ">
+        @Html.DisplayFor(model => model.title)
+    </div>
+    <p class="float-left" style="margin-right:10px" >Posted by:</p> <p class="float-left"style="margin-right:40px" >@Model.author</p><p class="float-left" style="margin-right:10px">on</p> <p class="clear-both"> @Model.pubtime </p> 
+    
+    <article class="blogPost">
+        <div id="Center" style="border:0px solid black;" >
+    @foreach (var s in ViewBag.paragraphs) { 
+        if(s!=null){
+            if(s!="\r\n"){
+               <text><p>@s</p></text>
+    }    }
+    
+    
+    }
+            
+            </div>
+        </article>
+    
+</fieldset>
+<section id="comments" style=" border:0px solid black;margin-left:-20px;width:95%;">
+@foreach (var i in ViewBag.comments){
+         <article style=" border:0px solid black;width:100%;margin-bottom:20px;">
+                        <header style="border-right:1px solid black;">
+                            <a href="#">@i.name</a> on @i.pubTime
+                        </header>
+                        <p style="padding-left:20px;">@i.description</p>
+                    </article>
+}
+    </section>
+
+<form action="/" method="post">    <fieldset>
+        <legend>Comment</legend>
+        <h2>Enter Your Comment</h2>
+    <br />
+        
+         <input id="name" name="Name" type="hidden" value="lev" />
+        <input id="ArticleId" name="ArticleId" type="hidden" value="@Model.id" />
+        <div class="editor-label">
+            <label for="website">Web-Site</label>
+        </div>
+        <div class="editor-field">
+            <input class="text-box single-line" data-val="true" data-val-url="The Web-Site field is not a valid fully-qualified http, https, or ftp URL." id="website" name="website" type="url" value="" />
+            <span class="field-validation-valid" data-valmsg-for="website" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="editor-label">
+            <label for="email">Email</label>
+        </div>
+        <div class="editor-field">
+            <input class="text-box single-line" id="email" name="email" type="email" value="" />
+            <span class="field-validation-valid" data-valmsg-for="email" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="editor-label">
+            <label for="description">Comment</label>
+        </div>
+        <div class="editor-field">
+            <textarea class="text-box multi-line" data-val="true" data-val-length="The field Comment must be a string with a maximum length of 200." data-val-length-max="200" data-val-required="The Comment field is required." id="description" name="description">
+</textarea>
+            <span class="field-validation-valid" data-valmsg-for="description" data-valmsg-replace="true"></span>
+            
+        
+            <input type="submit" value="Submit" />
+       
+        </div>    </fieldset>
+    </form>
+@section scripts{
+     
+    
+    }

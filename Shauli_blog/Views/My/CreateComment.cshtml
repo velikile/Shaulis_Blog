@@ -1,0 +1,58 @@
+﻿@model Shauli_blog.Models.Comment
+
+@{
+    ViewBag.Title = "CreateComment";
+}
+
+<h2>CreateComment</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.description)
+            @Html.ValidationMessageFor(model => model.description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.name)
+        </div>
+        <div class="editor-field">
+           <input id="name" name="Name" type="hidden" value="@ViewBag.UserName" />
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.website)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.website)
+            @Html.ValidationMessageFor(model => model.website)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.email)
+            @Html.ValidationMessageFor(model => model.email)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

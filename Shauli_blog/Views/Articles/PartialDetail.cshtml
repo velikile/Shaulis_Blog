@@ -1,0 +1,103 @@
+﻿@model Shauli_blog.Models.Article
+
+@{
+    ViewBag.Title = "PartialDetail";
+}
+<section id="intro">
+		<!-- Introduction --> 
+    <audio controls style="width:200px;"><source src="~/Content/music/shauli.mp3" type="audio/mp3" /></audio>
+		<header  class="MyHeader" >
+            
+            <section>
+			<h2>Do you have questions for me?</h2>
+		
+
+		<p style="padding-left:10px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
+        </section>
+        <img src="~/Content/images/intro_shauli.png" alt="Shauli" style="border-radius:0px 10px 10px 0px;"/>
+            </header>
+	</section>
+
+<form action="/My/SearchComment" method="post" id="SearchComments"style="clear:both"><!--the form for the search functionality-->
+        <h3>Search Comments<br />
+        </h3>
+        <p>
+            <label for="username">User name</label>
+            <input name="name" id="name" type="text" style="width:200px;"/><!--search by user name of submitter-->
+        </p>
+        <p>
+            <label for="date">From</label><!--search by the date of the submission by range-->
+            <input name="Sdate" id="Sdate" type="date" />
+            <label id="Form2">To</label>
+            <input name="Fdate" id="Fdate" type="date" />
+
+        </p>
+        <p>
+            <label for="email">E-mail</label>
+            <input name="email"  type="email" style="margin-right:20px;"/>
+
+            @*Html.ValidationMessageFor(model => model.email)*@<!--search by the submitter email-->
+        </p>
+        <p>
+            <label for="website">Web site</label>
+            <input name="website"  type="url" style="margin-right:20px;"/>
+            @*Html.ValidationMessageFor(model => model.website)*@
+        </p>
+        <p>
+            <label for="words">Words from the comment</label> <!--search by words from the actual comment-->
+            <textarea name="description" id="description"></textarea>
+        </p>
+        <p>
+            <label for="Score"><!--search by the score of the submitter --> 
+                Points: 1-10
+            </label>
+            <input type="number" id="point" name="point" min="1" max="10" value="1" onchange="updateTextInput(this.value);"> 
+            
+            <input value="Search" type="submit" />
+        </p>
+       
+            <script>
+
+                function updateTextInput(val) {
+                    document.getElementById("point").value = val;
+                }
+
+
+            </script>
+               
+            
+            
+       
+
+    </form>
+
+
+<div class="float-right" style="width:250px;margin-left:40px;padding:0px; border-radius:10px;">
+    <p style="font:bold 20px tahoma;padding-left:20px;text-decoration:underline;">Articles</p>
+@foreach (var i in ViewBag.articles) {
+            if(i.title==Model.title){
+               <p id ="Articles_linkOn">
+                 @Ajax.ActionLink((string)i.title,(string)ViewBag.title,new {id=i.id},new AjaxOptions{UpdateTargetId="done"})
+
+             </p>
+}
+else{
+               <p id ="Articles_link" >
+                 @Ajax.ActionLink((string)i.title,(string)ViewBag.title,new {id=i.id},new AjaxOptions{UpdateTargetId="done"})
+            </p>
+            }
+            }
+    </div>
+
+
+<div id="done" style="margin-top:20px; padding-left:20px; border:0px solid black;background-color:#c4ea99">
+@Html.Partial("Details")
+    </div>
+
+
+
+
+@section scripts
+    {
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    }
