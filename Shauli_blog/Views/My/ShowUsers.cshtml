@@ -1,42 +1,32 @@
-﻿@model IEnumerable<Shauli_blog.Models.UserProfile>
+﻿@model IEnumerable< Shauli_blog.Models.UserProfile>
 
 @{
     ViewBag.Title = "ShowUsers";
 }
 
-<h2>ShowUsers</h2>
+<div id="PageRes">
+    @Html.Partial("PartialList")
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th style="padding:20px;"> </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Points)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <th style="padding:20px;"> </th>
-        <td>
-            @Html.DisplayFor(modelItem => item.Points)
-        </td>
-        <th style="padding:20px;"> </th>
-        <td>
-            
-            @Html.ActionLink("Details", "UserDetails", new { id=item.UserId }) |
-            @Html.ActionLink("Delete", "DeleteUser", new { id=item.UserId })
-        </td>
-    </tr>
-}
+</div>
+<br />
+@Ajax.ActionLink("ShowAdmins", "PartialList", new {Role="Admin" }, new AjaxOptions
+{
+    UpdateTargetId = "PageRes"
+})
 
-</table>
+@Ajax.ActionLink("Show Contractors","PartialList",new {Role="Contractor" },new AjaxOptions{
+UpdateTargetId="PageRes"})
+
+@Ajax.ActionLink("Show Regular Users","PartialList",new {Role="User" },new AjaxOptions{
+UpdateTargetId="PageRes"})
+@Ajax.ActionLink("Show All Users","PartialList",new {Role="All" },new AjaxOptions{
+UpdateTargetId="PageRes"})
+
+
+
+@section scripts{
+    
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    
+    }

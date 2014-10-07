@@ -3,30 +3,24 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<head>
+<header>
     <link rel="stylesheet" href="~/Content/11.css" type="text/css" media="screen" />
-</head>
-<section id="intro">
+</header>
+
 		<!-- Introduction --> 
-    <audio controls style="width:200px;"><source src="~/Content/music/shauli.mp3" type="audio/mp3" /></audio>
-		<header  class="MyHeader" >
-            
-            <section>
-			<h2>Do you have questions for me?</h2>
-		
 
-		<p style="padding-left:10px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
-        </section>
-
-        <img src="~/Content/images/intro_shauli.png" alt="Shauli" style="border-radius:0px 10px 10px 0px;"/>
-            </header>
-	</section>
-
-
-
-    <form action="/My/SearchComment" method="post" id="SearchComments"style="clear:both"><!--the form for the search functionality-->
+     <div id="AdminTitle">Admins Page</div>   
+    <form action="/My/SearchCommentAdmin" method="post" id="SearchCommentsAdmin"style="clear:both"><!--the form for the search functionality-->
         <h3>Search Comments<br />
         </h3>
+        <p style="float:left;">
+            <label for="Id">Comment Id</label>
+            <input name="Id" id="Id" type="text" style="width:15%;"/><!--search by user name of submitter-->
+        </p>
+        <p> 
+            <label for="AId">Article Id</label>
+            <input name="AId" id="AId" type="text" style="width:15%;"/><!--search by user name of submitter-->
+        </p>
         <p>
             <label for="username">User name</label>
             <input name="name" id="name" type="text" style="width:200px;"/><!--search by user name of submitter-->
@@ -76,85 +70,22 @@
        
 
     </form>
+<div id="LinksWrapper">
+       <a class="AdminLinks" href="/My/ViewAll" style="clear:both;">
        
-        <div id="content" style="clear:both">
-            <div id="mainContent" style="float:left;border:0px solid black;">
-                <section >
-                    <article class="blogPost" style="border:0px solid black; width:90%" >
-                        <header>
-                            <h2>This is the title of a blog post</h2>
-                            <p>Posted on <time datetime="2009-06-29T23:31+01:00">June 29th 2009</time> by <a href="#">Mads Kjaer</a> - <a href="#comments">@ViewBag.Comments.Length Comments</a></p>
-                        </header>
-                        <div id="Center">
-                            <p>Lorem ipsum dolor sit amet, tellus eu orci lacus blandit. Cras enim nibh, sodales ultricies elementum vel, fermentum id tellus. Proin metus odio, ultricies eu pharetra dictum, laoreet id odio. Curabitur in odio augue. Morbi congue auctor interdum. Phasellus sit amet metus justo. Phasellus vitae tellus orci, at elementum ipsum. In in quam eget diam adipiscing condimentum. Maecenas gravida diam vitae nisi convallis vulputate quis sit amet nibh. Nullam ut velit tortor. Curabitur ut elit id nisl volutpat consectetur ac ac lorem. Quisque non elit et elit lacinia lobortis nec a velit. Sed ac nisl sed enim consequat porttitor.</p>
+                      Admin<br />
+                Comments
+              </a>
+<a class="AdminLinks" href="/My/ShowUsers" >
+                    Admin<br /> Users
+                </a>
 
-                            <img src="~/Content/images/flower.png" alt="Flower" />
-
-                            <p>Pellentesque ut sapien arcu, egestas mollis massa. Fusce lectus leo, fringilla at aliquet sit amet, volutpat non erat. Aenean molestie nibh vitae turpis venenatis vel accumsan nunc tincidunt. Suspendisse id purus vel felis auctor mattis non ac erat. Pellentesque sodales venenatis condimentum. Aliquam sit amet nibh nisi, ut pulvinar est. Sed ullamcorper nisi vel tortor volutpat eleifend. Vestibulum iaculis ullamcorper diam consectetur sagittis. Quisque vitae mauris ut elit semper condimentum varius nec nisl. Nulla tempus porttitor dolor ac eleifend. Proin vitae purus lectus, a hendrerit ipsum. Aliquam mattis lacinia risus in blandit.</p>
-                           <!-- <iframe title="YouTube video player" class="youtube-player" type="text/html"
-                                    width="200" height="250" src="http://www.youtube.com/embed/W-Q7RMpINVo"
-                                    frameborder="0" style="padding:0px ;margin:0px;" ></iframe>--><!--Video tag replaced with the iframe for youtube video -->
-                               <video src="~/Views/My/Index" controls></video>
-                            <p>Vivamus vitae nulla dolor. Suspendisse eu lacinia justo. Vestibulum a felis ante, non aliquam leo. Aliquam eleifend, est viverra semper luctus, metus purus commodo elit, a elementum nisi lectus vel magna. Praesent faucibus leo sit amet arcu vehicula sed facilisis eros aliquet. Etiam sodales, enim sit amet mollis vestibulum, ipsum sapien accumsan lectus, eget ultricies arcu velit ut diam. Aenean fermentum luctus nulla, eu malesuada urna consequat in. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque massa lacus, sodales id facilisis ac, lobortis sed arcu. Donec hendrerit fringilla ligula, ac rutrum nulla bibendum id. Cras sapien ligula, tincidunt eget euismod nec, ultricies eu augue. Nulla vitae velit sollicitudin magna mattis eleifend. Nam enim justo, vulputate vitae pretium ac, rutrum at turpis. Aenean id magna neque. Sed rhoncus aliquet viverra.</p>
-                        </div>
-                    </article>
-                </section>
-                <section id="comments" style=" border:0px solid black;clear:both;width:100%;">
-                    <h3>Comments</h3>
-                    <br />
-                    @foreach(var item in ViewBag.Comments){
-                    <article style=" border:0px solid black;width:100%;margin-bottom:20px;">
-                        <header>
-                            <a href="#">@item.name</a> on @item.pubTime
-                        </header>
-                        <p>@item.description</p>
-                    </article>}
-                    
-                </section>
+<a class="AdminLinks" href="/Articles/Create" style="clear:both;" >
+                    Create<br />new <br />article
+                </a>
                 <p></p>
-                 <h2>Enter your Comment</h2><br />
-   @using (Html.BeginForm()) {
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>Comment</legend>
-        
-         <input id="name" name="Name" type="hidden" value="@ViewBag.UserName" />
-        <input id="ArticleId" name="ArticleId" type="hidden" value="@ViewBag.ArticleId" />
-        <div class="editor-label">
-            @Html.LabelFor(model => model.website)
+   
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.website)
-            @Html.ValidationMessageFor(model => model.website)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.email)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.email)
-            @Html.ValidationMessageFor(model => model.email)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.description)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.description)
-            @Html.ValidationMessageFor(model => model.description)
-            
-        
-            <input type="submit" value="Create" />
-       
-        </div>
-
-       
-
-        
-
-    </fieldset>
-}
                 <!--<form action="#" method="post" style="clear:both">
                     <h3>Post a comment</h3>
                     <p>
@@ -175,7 +106,7 @@
                     </p>
                     <p><input type="submit" value="Post comment" /></p>
                 </form>-->
-            </div>
+        
             <aside>
                 <section>
                     <header>
@@ -199,8 +130,55 @@
                     </ul>
                 </section>
             </aside>
-        </div>
+       
+<style>
+    #AdminTitle {
+         margin-bottom:0.5em; 
+         text-align:center;
+         font:bold 4em Tahoma;
+          background-color:#777777;
+           color:lightblue;
+           border-radius:20px ;
+    }
+    #LinksWrapper {
+
+        border:1px solid black;
+        background:linear-gradient(45deg,#4422ff,#445533);
         
+        border-radius:10px;
+        width:50%;
+        height:auto;
+        margin:0px;
+        float:left;
+        align-items:center;
+
+    }
+    .AdminLinks {
+        font:bold 1.5em tahoma;
+        text-align:center;
+        float:left;
+        background-color:#a29eff;
+        padding:3em;
+        margin:0.5em 0.4em;
+    }
+    .AdminLinks:hover {
+        
+       border-radius:5px 5px;
+
+        background-color:#f39922;
+        
+    }
+    a.a:hover {
+       
+       border-radius:2px 4px;
+       background-color:lightblue;
+        
+    }
+
+
+</style>       
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

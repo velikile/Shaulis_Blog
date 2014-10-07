@@ -1,0 +1,67 @@
+﻿@model Shauli_blog.Models.UserProfile
+
+@{
+    ViewBag.Title = "EditUserRoles";
+}
+
+<h2>EditUserRoles</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Edit User Role</legend>
+        <br />
+        <div class="editor-label">
+            UserName : @Model.UserName
+            
+        </div>
+        <br />
+        <input type="hidden" name="UserName" value="@Model.UserName" />
+        <input type="hidden" name="Points" value="@Model.Points" />
+        @if(ViewBag.Role=="Admin"){
+        <div class="radio"><input  type="radio" name="newRole" value="Admin" checked>Admin</div>}
+        else{
+        <div class="radio"><input  type="radio" name="newRole" value="Admin">Admin</div>}
+        @if(ViewBag.Role=="Contractor"){
+        <div class="radio"><input  type="radio" name="newRole" value="Contractor" checked>Contractor</div>}
+        else{
+        <div class="radio"><input  type="radio" name="newRole" value="Contractor">Contractor</div>}
+        @if(ViewBag.Role=="User"){
+        <div class="radio"><input  type="radio" name="newRole" value="User" checked>User</div>}
+        else{
+            <div class="radio"><input  type="radio" name="newRole" value="User">User</div>}
+        
+        
+        <div style="clear:both;padding-top:30px; ">
+        <input  type="submit" value="Submit">
+             </div>
+  
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ShowUsers")
+</div>
+<style> 
+       .radio {
+           align-items:center;
+           
+           float:left;
+           padding:0px 10px 0px 10px;
+        
+
+    }
+       .radio input {
+           align-items:center;
+           border:1px solid black;
+           float:left;
+           padding:10px 0px 10px 0px;
+        width:20px;    
+
+    }
+</style>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

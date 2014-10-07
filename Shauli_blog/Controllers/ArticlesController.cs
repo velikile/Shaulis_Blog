@@ -10,7 +10,7 @@ namespace Shauli_blog.Controllers
 {
     public class ArticlesController : Controller
     {
-         private UsersContext db = new UsersContext();
+        private UsersContext db = new UsersContext();
 
         // GET: /Articles/
         [HttpGet]
@@ -57,21 +57,22 @@ namespace Shauli_blog.Controllers
         public ActionResult Index() {
 
             var articles = db.Articles.ToArray();
-            return View(articles);
+            return  View(articles);
         
         }
 
+        [Authorize(Roles="Admin")]
         public ActionResult Details(long id=1)
         {
-            Article article= db.Articles.Find(id);
+            /*Article article= db.Articles.Find(id);
             ViewBag.paragraphs = ExtractParaGraphs(article.content);
             var b = from c in db.Comments where id==c.ArticleId select c;
             ViewBag.comments = b.ToArray();
             ViewBag.UserName = User.Identity.Name;
             ViewBag.ArticleId = id;
            
-            ViewBag.articles = db.Articles.ToArray();
-            return PartialView(article);
+            ViewBag.articles = db.Articles.ToArray();*/
+            return PartialView();
         }
 
         public ActionResult PartialDetail(long id=-1)
@@ -105,20 +106,27 @@ namespace Shauli_blog.Controllers
             return View(article);
         }
 
+        [Authorize(Roles="Admin")]
         [HttpPost]
         public ActionResult Details(Comment comment)
         {
-            db.Comments.Add(comment);
-            db.SaveChanges();
-            return RedirectToAction("List");
+            if (ModelState.IsValid)
+            {
+                db.Comments.Add(comment);
+                db.SaveChanges();
+                return RedirectToAction("List");
+            }
+            return View();
         }
 
+        [Authorize(Roles="Admin")]
         public ActionResult Edit(long id=1) {
 
             Article article = db.Articles.Find(id);
             return View(article);
         }
 
+        [Authorize(Roles="Admin")]
         [HttpPost]
         public ActionResult Edit(Article article) 
         {
@@ -133,7 +141,7 @@ namespace Shauli_blog.Controllers
         }
 
 
-
+        [Authorize(Roles="Admin")]
         public ActionResult Delete(long id=-1) {
 
             if (id != -1) {

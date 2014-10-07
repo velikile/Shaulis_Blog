@@ -306,6 +306,11 @@
     <Content Include="Views\Fans\Edit.cshtml" />
     <Content Include="Views\Articles\Edit.cshtml" />
     <Content Include="Views\Articles\PartialDetail.cshtml" />
+    <Content Include="Views\My\UserDetails.cshtml" />
+    <Content Include="Views\My\SearchCommentAdmin.cshtml" />
+    <Content Include="Views\My\EditUserRoles.cshtml" />
+    <Content Include="Views\My\PartialList.cshtml" />
+    <Content Include="Views\Home\EbayDeals.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

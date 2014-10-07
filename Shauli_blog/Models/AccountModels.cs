@@ -20,6 +20,7 @@ namespace Shauli_blog.Models
         public DbSet<Fan> Fans{ get; set; }
         public DbSet<Comment> Comments { get; set;}
         public DbSet<UserProfile> UserProfiles { get; set; }
+
     }
 
     [Table("UserProfile")]

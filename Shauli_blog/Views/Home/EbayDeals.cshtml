@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "EbayDeals";
+}
+
+<h2>EbayDeals</h2>
+
+<h3>We suggest the following:</h3>
+@foreach (var c in ViewBag.RenderThis){
+@Html.Raw(c)
+
+}
+@foreach (var c in ViewBag.MORE)
+{
+    foreach (var d in c) { 
+    @Html.Raw(d)}
+
+}

@@ -1,0 +1,60 @@
+﻿@model Shauli_blog.Models.UserProfile
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<br />
+<fieldset>
+    <legend>UserProfile</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Points)
+    </div>
+    <div class="display-field">
+        @if (Model.Points != null) {
+        @Html.DisplayFor(model => model.Points)}
+        else{
+       <div>0</div>
+            
+        }
+    </div>
+    <div class="display-label">
+         Role
+    </div>
+    <div class="display-field">
+        @ViewBag.Role
+    </div>
+
+
+    <style>
+        .display-label {
+            font:bold 2em David;
+            color:lightblue;
+            background-color:lightcoral;
+            border:1px solid black;
+            margin-right:20px;
+            margin-top:20px;
+           
+        }
+        .display-field {
+            padding:0px;
+            text-decoration:none;
+           font-size:2em;
+            
+        }
+
+    </style>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.UserId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

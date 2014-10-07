@@ -5,25 +5,6 @@
 }
 <header>
     <script src="~/Scripts/jquery-1.7.1.min.js"></script>
-    <script>
-
-        $("document").ready(function () {
-            
-            $("#Center").mouseover(function () { $(this).css('color', 'red'); });
-            $("#Center").mouseout(function () { $(this).css('color', 'blue'); });
-            $("#Center").mousedown(function () { $(this).css('color', '#999999'); });
-            $("#Center").mouseup(function () { $(this).hide(); });
-            $('#Atitle').click(function () {
-                
-                $("#Center").show();
-            });
-
-
-
-        });
-
-
-    </script>
     <link rel="stylesheet" href="~/Content/11.css" type="text/css" media="screen" />
 </header>
 <fieldset>
@@ -45,7 +26,15 @@
     
     }
             
-            </div>
+            </div><br />
+        <h3>Related Media</h3>
+        @if(Model.title=="My request"){
+            <div><img src="~/Content/images/flower.png" /></div>}
+        else if(Model.title=="Boyaka"){
+            <div><video src="~/Content/videos/shauli.mp4" controls></video></div>}
+        else if(Model.title=="Some"){
+            <canvas id="canvas1" width="600"  style="border:1px solid black;"></canvas>}
+
         </article>
     
 </fieldset>
@@ -96,7 +85,43 @@
        
         </div>    </fieldset>
     </form>
-@section scripts{
-     
+
+<img src="blank" id="image1" style="display:none;" />
+
+     <script type="text/javascript">
+         var images =
+             ['/Content/images/flower.png', '/Content/images/intro_shauli.png', '/Content/images/intro_flower.png'
+
+             ];
+         var index = 0;
+         var srcImg = document.getElementById('image1');
+         var Canvas = null;
+         var ctx = null;
+         window.onload = function () {
+            
+             srcImg.setAttribute('width', 600);
+             srcImg.setAttribute('height', 300);
+             Canvas = document.getElementById('canvas1');
+             if (Canvas && Canvas.getContext('2d')) {
+                 ctx = Canvas.getContext('2d');
+                 if (ctx) {
+                     
+                     Switchimg();
+                 }
+
+             }
+             setInterval(Switchimg, 2500);
+         }
+
+         function Switchimg() {
+             
+            srcImg.setAttribute('src',images[index++]);
+             if(index>=images.length)
+                 index = 0;
+             ctx.drawImage(srcImg, 0,0,600, 200);
+
+         }
+     </script>
+
     
-    }
+    

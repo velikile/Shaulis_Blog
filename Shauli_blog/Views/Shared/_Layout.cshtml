@@ -12,16 +12,16 @@
         <header style="border:2px solid black; background:black; padding-bottom:100px;">
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("Shauli's blog", "Index", "My")</p>
+                    <p class="site-title">@Html.ActionLink("Shauli's blog", "Index", "Home")</p>
                 </div>
                 <div class="float-right">
                     <section id="login">
                         @Html.Partial("_LoginPartial")
                     </section>
-                    <nav>
+                    <nav >
                         <ul id="menu">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Content", "Index", "My")</li>
+                            <li>@Html.ActionLink("Content", "PartialDetail", "Articles")</li>
                             <li>@Html.ActionLink("Fans","Index","Fans")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
