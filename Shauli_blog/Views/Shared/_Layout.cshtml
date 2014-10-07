@@ -20,6 +20,9 @@
                     </section>
                     <nav >
                         <ul id="menu">
+                            @if (User.IsInRole("Admin")) {
+                                <li>@Html.ActionLink("Admin Page", "Index", "My")</li>
+                            }
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("Content", "PartialDetail", "Articles")</li>
                             <li>@Html.ActionLink("Fans","Index","Fans")</li>
@@ -39,15 +42,17 @@
             <section class="content-wrapper main-content clear-fix">
                 @RenderBody()
             </section>
+            @RenderSection("featured3", required: false)
+            @RenderSection("featured2", required: false)
         </div>
         <footer>
             <div class="content-wrapper">
                 <div class="float-left" style="width:100%; border:0px solid black;">
                     <section style="float:left;width:30%;border:0px solid black;">
-                    <p style="font-size:20px;font-style:italic;">@Html.ActionLink("About","About","Home")<br/><p>asdffdsa</p><p> asdfdsf </p><p> asdfs</p></section>
+                    <p style="font-size:20px;font-style:italic;">@Html.ActionLink("About","About","Home")<br/><p>Application</p><p>Development</p><p>Lab</p><p>Course</p></section>
                     <section style="float:left;width:30%;">
-                    <p style="font-size:20px;font-style:italic;padding-right:50px">Blogroll</p><p>asdffdsa</p><p> asdfdsf </p><p> asdfs</p></section>
-                    <section style="float:left;width:30%;"><p style="font-size:20px;font-style:italic;">Popular</p><p>asdffdsa</p><p> asdfdsf </p><p> asdfs</p></section>
+                    <p style="font-size:20px;font-style:italic;">@Html.ActionLink("Contact","Contact","Home")<br/><p>@Html.ActionLink("Directions","Map","Home")</p><p>Keep</p><p>On</p><p>Touch</p></section>
+                    <section style="float:left;width:30%;"><p style="font-size:20px;font-style:italic;">Made By</p><p style="font-size:15px;">Lev</p><p style="font-size:15px;">Oleg</p><p style="font-size:15px;">Eliel</p></section>
                 </div>
             </div>
         </footer>

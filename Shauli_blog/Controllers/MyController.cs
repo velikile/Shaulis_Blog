@@ -135,6 +135,35 @@ namespace Shauli_blog.Controllers
             
         }
 
+        public ActionResult GroupByMostPoints()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            List<string> list = new List<string>();
+            var points = from n in db.UserProfiles group n by n.Points;
+            bool flag = true;
+            foreach (var point in points)
+            {
+                foreach (var i in point)
+                {
+
+                    if (i.Points == null)
+                    {
+                        i.Points = 0;
+                    }
+                    if (flag == true)
+                    {
+                        list.Add(i.Points.ToString());
+                        flag = false;
+                    }
+                    dict.Add(i.UserName, i.Points.ToString());
+                }
+                flag = true;
+            }
+            ViewBag.list = list;
+            ViewBag.dict = dict;
+            return View();
+        }
+
         [Authorize(Roles = "Admin")]
         public ActionResult ViewAll() {//list all of the comments
 

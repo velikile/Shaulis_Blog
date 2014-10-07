@@ -1,41 +1,223 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Hi there, take a read about me";
 }
+
+@*ABOUT SHAULI*@
 @section featured {
     <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
-                <h1>@ViewBag.Title.</h1>
-                <h2>@ViewBag.Message</h2>
+                
+                <div id="conatainer">
+                    <h1 id="Sitetitle" class="neon">
+                        <a>@ViewBag.Title</a>
+                        
+                    </h1>
+                    <div style="padding-top:16px; ">
+                        <a href="/my/GroupByMostPoints" class="button1" style="color:white;" >Top Users</a>
+                        <a href="/Home/EbayDeals" class="button1" style="color:white;">eBay</a>
+                      </div>
+                </div>
+                <h2 id="AboutS">יליד ארגנטינה. בהיותו בו 13, עלה עם משפחתו לארץ ישראל. שאולי הוא דודו של במאי הקולנוע איתן גרין.
+את שירותו הצבאי עשה בלהקת הנח"ל בתוכניות "עד מאה ועשרים" ו"צריך לחיות", בהן השתתפו גם יהורם גאון, אריק איינשטיין, עליזה רוזן ויוסי פרוסט. במסגרת התוכנית "לא לצאת מהכלים" כיכב במערכון "הנידון למחבוש ברח" שנכתב על ידי אפרים קישון.
+עם סיום שירותו הצבאי, שימש מספר שנים כמורה מחנך ובמקביל, כמבקר קולנוע בעיתון "מעריב לנוער".
+בשנת 1962 נסע בשליחות לברזיל, שם למד בבית הספר לקולנוע מטעם משרד החוץ הברזילאי, בהנהלתו של הבמאי השבדי ארנה סוקסדורף.
+משחק[עריכת קוד מקור | עריכה]
+לאחר חזרתו ארצה, שיחק שאולי במספר הצגות: "הטיירה" (1965) בבימוי נעמי פולני (תיאטרון "פשוש"), יחד עם ליאור ייני ועליזה רוזן; בקומדיה "הזוג המוזר" (1967) בבימוי ראובן מורגן ("תיאטרון "בימות"), לצידם של השחקנים בומבה צור וגדעון זינגר, וב"עלי כינור" (1968) בבימויו של אברהם ניניו (תיאטרון הבימה), לצידם של נסים עזיקרי ורפאל קלצ'קין.
+בשנת 1972 שימש כעוזר במאי וכשחקן בסרטו של אברהם הפנר, "לאן נעלם דניאל וקס".
+</h2>
             </hgroup>
-            <p style="color:red;">
+            @*<p style="color:red;">
                This site was changed by Lev veliki Id:310136098
-            </p>
+            </p>*@
         </div>
     </section>
 }
-<h3>We suggest the following:</h3>
-<ol class="round">
-    <li class="one">
-        <h5>Getting Started</h5>
-        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-        enables a clean separation of concerns and that gives you full control over markup
-        for enjoyable, agile development. ASP.NET MVC includes many features that enable
-        fast, TDD-friendly development for creating sophisticated applications that use
-        the latest web standards.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
-    </li>
+<div style="float:left";>
+    <h3>Love our site?</h3>
+    <ol class="round">
+        <li class="one">
+            <h5> You can become our fan!</h5>
+            Just register in the Fans section.
+        </li>
 
-    <li class="two">
-        <h5>Add NuGet packages and jump-start your coding</h5>
-        NuGet makes it easy to install and update free libraries and tools.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
-    </li>
+        <li class="two">
+            <h5>Creators Fan?</h5>
+            Just follow us on the about section.
+        </li>
 
-    <li class="three">
-        <h5>Find Web Hosting</h5>
-        You can easily find a web hosting company that offers the right mix of features
-        and price for your applications.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
-    </li>
-</ol>
+        <li class="three">
+            <h5>Want read interesting stuff?</h5>
+            You can find a lot of interesting stuff in the Content section.
+        </li>
+    </ol>
+</div>
+
+
+
+
+
+@*BOUBLES*@
+<style>
+    body {
+        margin: 0;
+        background: #222;
+        min-width: 360px;
+    }
+
+    rect {
+        fill: none;
+        pointer-events: all;
+    }
+
+    circle {
+        fill: none;
+        stroke-width: 2.5px;
+    }
+    #AboutS {
+        display:none;
+    }
+</style>
+
+@section featured3{
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script>
+        window.onload = function () { 
+            $("#Sitetitle a").click(function () {
+                $("#AboutS").show();
+            });
+        }
+            var width = Math.max(260, innerWidth),
+                height = Math.min(150, innerHeight);
+
+            var i = 0;
+
+            var svg = d3.select("body").append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+            svg.append("rect")
+                .attr("width", width)
+                .attr("height", height)
+                .on("ontouchstart" in document ? "touchmove" : "mousemove", particle);
+
+            function particle() {
+                var m = d3.mouse(this);
+
+                svg.insert("circle", "rect")
+                    .attr("cx", m[0])
+                    .attr("cy", m[1])
+                    .attr("r", 1e-6)
+                    .style("stroke", d3.hsl((i = (i + 1) % 360), 1, .5))
+                    .style("stroke-opacity", 1)
+                  .transition()
+                    .duration(3000)
+                    .ease(Math.sqrt)
+                    .attr("r", 100)
+                    .style("stroke-opacity", 1e-6)
+                    .remove();
+
+                d3.event.preventDefault();
+            }
+
+    </script>
+}
+
+<div id="bitcoin_widget_container" ></div>
+<div style="float:left">
+    <script src="https://cryptocoinsnews.com/widget/bitcoin_widget.js.php" type="text/javascript"></script>
+    <h2>Exchange Coins-Rate to NIS: </h2>
+    One 
+    <select id="symbol">
+      <option value="gbp">British Pound</option>
+      <option value="usd" selected >USD</option>
+      <option value="eur">Euro</option>
+    </select>
+     equals <div id="sResult"></div> Israeli Shekels <br />
+    <input type="button" value="Exchange" id="stockget" />
+
+</div>
+<style>
+
+    .widget_row2 {
+       display:none;
+
+    }
+    .widget_row {
+       padding-top:0px;
+       font:10px;
+    }
+    .the_widget a:hover {
+        background-color:white;
+    }
+    .get_widget_link_container {
+        display: none;
+      
+    }
+    #bitcoin_widget_container {
+        float:left;
+        width: 239px !important;
+    }
+    #bitcoin_price_last, .bitcoin_price_label {
+        font:1em;
+    }
+    .the_widget {
+        background-color:white;
+        width:40%;
+        padding-top:0px;
+
+    }
+    #CCN_header {
+        display:none;
+
+    }
+
+</style>
+@section scripts{
+    <script>
+        var sec = 1000;
+
+        function getstock() {
+            $.ajax({//document
+                type: "GET",
+                url: "/Home/Currency",
+                data: {
+                    symbol: $("#symbol").val()
+                },
+                success: function (result) {
+                    $("#sResult").html(result);
+                },
+                error: function (err) {
+                    alert("Error!! " + err);
+                }
+            });
+        }
+
+        $("#stockget").click(getstock);
+        // setInterval(getstock, 2 * sec)
+
+    </script>
+    
+    
+    }
+
+
+
+
+@*BOX*@
+@section featured2 {
+    <div id="boxWhite">
+
+        <div id="box">
+
+            <span class="txt"></span>
+            <span class="creators">To see the Credits use mouse over</span><br/>
+            <span class="txt" contenteditable spellcheck="false">Lev, Oleg, Eliel. ©Copyrights Reserved.</span><br />
+            <span class="txt" contenteditable spellcheck="false">Course By Roi Yehoshua.</span>
+
+        </div>
+
+    </div>
+}
+
+

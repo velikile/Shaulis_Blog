@@ -3,7 +3,6 @@
 }
 
 <hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
     <h2>@ViewBag.Message</h2>
 </hgroup>
 
@@ -27,15 +26,15 @@
     </header>
     <p>
         <span class="label">Support:</span>
-        <span><a href="mailto:Support@example.com">Support@example.com</a></span>
+        <span><a href="mailto:levbo3@yahoo.com">levbo3@yahoo.com</a></span>
     </p>
     <p>
         <span class="label">Marketing:</span>
-        <span><a href="mailto:Marketing@example.com">Marketing@example.com</a></span>
+        <span><a href="mailto:kiberg7@gmail.com">kiberg7@gmail.com</a></span>
     </p>
     <p>
         <span class="label">General:</span>
-        <span><a href="mailto:General@example.com">General@example.com</a></span>
+        <span><a href="mailto:eliel.dabush@gmail.com">eliel.dabush@gmail.com</a></span>
     </p>
 </section>
 
@@ -44,7 +43,39 @@
         <h3>Address</h3>
     </header>
     <p>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399
+        College Of Management<br />
+        קמפוס ראשון לציון | אלי ויזל 2, ראשון לציון
     </p>
 </section>
+
+@{
+    string cord = ViewBag.lat + "," + ViewBag.lng;
+}
+ 
+<div id="map">
+    <br/><br/>
+    <h2>@Html.ActionLink("Map", "Map", "Home")<h2/>
+    <br/>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false"></script>
+    <script>
+        function initialize() {
+            myLatlng = new google.maps.LatLng(@cord);
+            var mapProp = {
+                center: myLatlng,
+                zoom: 17,
+                mapTypeId: google.maps.MapTypeId.TERRAIN
+            };
+            var map = new google.maps.Map(document.getElementById("googleMap")
+              , mapProp);
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: 'Main Office'
+            });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <div id="googleMap" style="width:500px;height:380px;"></div>
+</div>

@@ -11,7 +11,7 @@
     <legend>Article</legend>
     
     <div Id="Atitle" style="font:20px tahoma; ">
-        @Html.DisplayFor(model => model.title)
+        @Html.DisplayFor(model => model.title) 
     </div>
     <p class="float-left" style="margin-right:10px" >Posted by:</p> <p class="float-left"style="margin-right:40px" >@Model.author</p><p class="float-left" style="margin-right:10px">on</p> <p class="clear-both"> @Model.pubtime </p> 
     
@@ -31,7 +31,7 @@
         @if(Model.title=="My request"){
             <div><img src="~/Content/images/flower.png" /></div>}
         else if(Model.title=="Boyaka"){
-            <div><video src="~/Content/videos/shauli.mp4" controls></video></div>}
+            <div><video src="~/Content/Uploads/shauli.mp4" controls autoplay="autoplay"></video></div>}
         else if(Model.title=="Some"){
             <canvas id="canvas1" width="600"  style="border:1px solid black;"></canvas>}
 
@@ -83,7 +83,8 @@
         
             <input type="submit" value="Submit" />
        
-        </div>    </fieldset>
+        </div>
+    </fieldset>
     </form>
 
 <img src="blank" id="image1" style="display:none;" />

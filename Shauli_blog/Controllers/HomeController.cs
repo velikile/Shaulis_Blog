@@ -16,6 +16,14 @@ namespace Shauli_blog.Controllers
 
             return View();
         }
+        public string Currency(string symbol)
+        {
+            if (symbol == null)
+                return "Enter a Value";
+            ServiceReference1.CurrencyServerWebServiceSoapClient client = new ServiceReference1.CurrencyServerWebServiceSoapClient("CurrencyServerWebServiceSoap");
+            string result = client.getCurrencyValue("4", symbol,"ILS").ToString();
+            return result;
+        }
         public ActionResult EbayDeals(){    
             string deals=new WebClient().DownloadString("http://deals.ebay.com/feeds/xml");
             XDocument xml = XDocument.Parse(deals);
@@ -71,8 +79,36 @@ namespace Shauli_blog.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Keep On Touch";
 
+            var address = "המסלול האקדמי המכללה למנהל, ראשון לציון, ישראל";
+            var requestUri = string.Format("http://maps.googleapis.com/maps/api/geocode/xml?address={0}&sensor=false", Uri.EscapeDataString(address));
+
+            var request = WebRequest.Create(requestUri);
+            var response = request.GetResponse();
+            var xdoc = XDocument.Load(response.GetResponseStream());
+
+            var result = xdoc.Element("GeocodeResponse").Element("result");
+            var locationElement = result.Element("geometry").Element("location");
+            ViewBag.lat = locationElement.Element("lat").Value;
+            ViewBag.lng = locationElement.Element("lng").Value;
+
+            return View();
+        }
+
+        public ActionResult Map()
+        {
+            var address = "המסלול האקדמי המכללה למנהל, ראשון לציון, ישראל";
+            var requestUri = string.Format("http://maps.googleapis.com/maps/api/geocode/xml?address={0}&sensor=false", Uri.EscapeDataString(address));
+
+            var request = WebRequest.Create(requestUri);
+            var response = request.GetResponse();
+            var xdoc = XDocument.Load(response.GetResponseStream());
+
+            var result = xdoc.Element("GeocodeResponse").Element("result");
+            var locationElement = result.Element("geometry").Element("location");
+            ViewBag.lat = locationElement.Element("lat").Value;
+            ViewBag.lng = locationElement.Element("lng").Value;
             return View();
         }
 

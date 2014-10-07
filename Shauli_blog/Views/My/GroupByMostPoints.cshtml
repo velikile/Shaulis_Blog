@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Shauli_blog.Models.Comment>
+
+@{
+    ViewBag.Title = "GroupByMostPoints";
+}
+
+<h2>GroupByMostPoints</h2>
+<p>This is a grouped table with user name and his points.</p>
+
+
+@foreach( var i in ViewBag.list ) 
+{
+    
+    <table class="hoverTable">
+        <th style="background-color:darkcyan">Name</th>
+        <th style="background-color:darkcyan" colspan="2">Points</th>
+    @foreach (var j in ViewBag.dict)
+{
+    if (@i == @j.Value)
+    {
+            <tr>
+                <th>
+                    @j.Key
+                </th>
+                
+                <th>
+                    @j.Value
+                </th>
+            </tr>
+        }
+              
+    }
+    </table>  
+    
+    
+}
